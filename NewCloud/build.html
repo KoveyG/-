@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="keywords" content="">
+	<title>编辑页</title>
+    <link rel="stylesheet" type="text/css" href="css/base.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="css/spectrum.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="css/index.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="css/tem.css" media="screen" />
+    <script type="text/javascript" src="js/jquery-1.9.0.min.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript" src="js/spectrum.js"></script>
+	<script type="text/javascript" src="js/vue-2.4.0.js"></script>
+    <script type="text/javascript" src="js/drag.js"></script>
+    <script type="text/javascript" src="ins/layer/layer.js"></script>
+    <!-- <script>
+    	window.onbeforeunload=function(e){     
+		　　var e = window.event||e;  
+		　　e.returnValue=("确定不保存一下吗?");
+		}
+    </script> -->
+</head>
+<body>
+<div id="body">
+	<div class="head">
+		<div class="logo"></div>
+		<div class="box head-bt">
+			<div class="tp"><!-- <button>选择模板</button> --></div><!-- 选择模板按钮 -->
+			<div class="box bt-op">
+				<button class="save" @click="save"><i class="iconfont icon-baocun"></i><span> 保 存</span></button>
+				<button class="pv" @click="preview"><i class="iconfont icon-yulan1"></i><span> 预 览</span></button>
+				<!-- <button class="pub"><i class="iconfont icon-fabu"></i><span> 发 布</span></button> -->
+			</div><!-- 操作按钮 -->
+			<div><button class="colse"><i class="iconfont icon-dengchu"></i></button></div><!-- 关闭按钮 -->
+		</div>
+	</div>
+	<div class="main">
+		<div class="left">
+			<div class="tabbox">
+				<div class="navbox1">
+					<ul class="tabnav1">
+						<li class="active">工具</li>
+					</ul>
+				</div>
+				<div class="leftmain">
+					<div class="tabmain1">
+						<div class="toolbox">
+							<ul id="puilist1" class="puilist">
+								<li class="list-item">
+									<h4>常规工具<b><i class="iconfont icon-choose-copy"></i></b></h4>
+									<div class="info" style="display: block;">
+										<ul class="comtool">
+					                    	<li class="form-edit-widget-label" :class="item.use?'':'enable'" v-for="(item,index) in init.base" :xtype="item.widget.type" :key="index" @click.stop="addItem(item)"><a><i :class="'iconfont icon-'+item.widget.type"></i><span>{{item.label}}</span></a></li>
+										</ul>
+									</div>
+								</li>
+								<li class="list-item">
+									<h4>互动工具<b><i class="iconfont icon-choose-copy"></i></b></h4>
+									<div class="info" style="display: block;">
+										<ul class="comtool">
+					                    	<li class="form-edit-widget-label" :class="item.use?'':'enable'"  v-for="(item,index) in init.boost" :xtype="item.widget.type" :key="index" @click.stop="addItem(item)"><a><i :class="'iconfont icon-'+item.widget.type"></i><span>{{item.label}}</span></a></li>
+										</ul>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="mid" id="mid" @click.stop="blank">
+			<div class="layer" v-dragx="partlist" @bindUpdate="bindUpdate" :style="{left:partlist.left,top:partlist.top}" v-show="partlist.isshow" v-cloak>
+				<div class="tit"><span class="drag">部件列表</span><button @click="partlist.isshow = !partlist.isshow"><i class="iconfont icon-dengchu"></i></button></div>
+				<div class="layerlist">
+					<draggable element="ul" v-model="comlist" @end="ends">
+						<li v-for="(item,index) in comlist" v-show="item.isshow">
+							<button @click="item.show = !item.show"><i :class="+ item.show?'iconfont icon-yulan':'iconfont icon-yulan show'"></i></button>
+							<div class="layerinput">
+								<span :class="index == sIndex?'active':''" v-html="item.description" v-show="item.spanshow" @click="active(index)"></span>
+								<input type="text" v-model="item.description" v-on:blur="item.spanshow = !item.spanshow" v-show="!item.spanshow">
+								<button @click="item.spanshow = !item.spanshow"><i class="iconfont icon-bianji editlay"></i></button>
+							</div>
+						</li>
+					</draggable>
+				</div>
+				<div class="opr"><i class="iconfont icon-shanchu" @click="del"></i></div>
+			</div>
+			<div class="ele" :style="[{height:list.pageheight}]" @click.stop="blank">
+				<div class="opframe">
+					<span @click="back" title="撤回 ctrl+z"><i class="iconfont icon-chexiao1"></i></span>
+					<span @click="next" title="前进 ctrl+y"><i class="iconfont icon-qianjin"></i></span>
+					<span @click="preview = !preview" title="预览"><i class="iconfont icon-yulan"></i></span>
+					<span @click="partlist.isshow = !partlist.isshow" title="部件列表"><i class="iconfont icon-layers"></i></span>
+					<span @click="shorten" title="页面缩短 ctrl+↑"><i class="iconfont icon-shang"></i></span>
+					<span @click="elongate" title="页面加长 ctrl+↓"><i class="iconfont icon-icon-xia"></i></span>
+				</div>
+				<div class="elebox" :style="[{backgroundPosition:list.backgroundPosition},{backgroundColor:list.backgroundColor},{backgroundImage:list.backgroundImage},{backgroundRepeat:list.backgroundRepeat}]">
+					<div id="form-widget-list">
+	                    <div class="dragbox" id="draggable">
+	                        <component :is="'tab-'+item.widget.type" v-for="(item,index) in comlist" :key="index" :sbool="sIndex==index" :item="item" @getcx="selector" @getfocus="focus()" @delcx="deleteCom" @keydelcx="deleteCom" :cindex="index" :widname.sync="item.widget.widgetName" @addcx="addItem"></component>
+	                    	<div id="textCtrl" class="midopbox textCtrl" v-if="comlist[sIndex]" v-show="itemlist.length < 2" :style="[{top:parseInt(comlist[sIndex].widget.tops)-comlist[sIndex].widget.opheight-8+'px'},{left:parseInt(comlist[sIndex].widget.lefts)+parseInt(comlist[sIndex].widget.width)-50+'px'},{width:comlist[sIndex].widget.opwidth+'px'}]">
+							<op-color :item="comlist[sIndex]" v-if="comlist[sIndex].widget.colors"></op-color>
+							<op-fontfamily :item="comlist[sIndex]" v-if="comlist[sIndex].widget.fontFamily"></op-fontfamily>
+							<op-fontsize :item="comlist[sIndex]" v-if="comlist[sIndex].widget.fontSize"></op-fontsize>
+							<op-fontline :item="comlist[sIndex]" v-if="comlist[sIndex].widget.fontLine"></op-fontline>
+							<op-fontletter :item="comlist[sIndex]" v-if="comlist[sIndex].widget.fontLetter"></op-fontletter>
+							<op-optext :item="comlist[sIndex]" v-if="comlist[sIndex].widget.fontWeight"></op-optext>
+							<op-opalign :item="comlist[sIndex]" v-if="comlist[sIndex].widget.textAlign"></op-opalign>
+							<op-opcontrol :item="comlist[sIndex]" v-if="comlist[sIndex]" :cindex="this.sIndex" @getcx="selector" @delcx="deleteCom" @copycx="copyItem"></op-opcontrol>
+							</div>
+	                    </div>
+		            </div>
+				</div>
+			</div>
+			<div class="phoneline"><span>首屏分界线</span></div>
+		</div>
+		<div class="right">
+			<div class="tabbox">
+				<div class="navbox2">
+					<ul class="tabnav2">
+						<li :class="this.sIndex == -1?'active':''" @click="opcon">设置</li>
+						<li :class="this.sIndex != -1?'active':''" v-show="this.sIndex != -1? true:false">属性</li>
+					</ul>
+				</div>
+				<div class="rightmain">
+					<div class="tabmain2">
+						<div class="setup" v-show="this.sIndex == -1? true:false" id="setup">
+							<form action="">
+								<div class="formbox lp">
+									<label for="">页面标题</label>
+									<input type="text" v-model="list.tit" :value="list.tit">
+									<p class="remark"></p>
+								</div>
+								<div class="formbox lp">
+									<label for="">域名</label>
+									<input type="text" v-model="list.realm" :value="list.realm">
+									<p class="remark"></p>
+								</div>
+								<div class="formbox lp">
+									<label for="">关键词</label>
+									<input type="text" v-model="list.content" :value="list.content">
+									<p class="remark"></p>
+								</div>
+								<div class="formbox lp">
+									<label for="">页面高度</label>
+									<input type="text" v-model="list.pageheight" :value="list.pageheight">
+									<p class="remark"></p>
+								</div>
+								<div class="formbox col">
+									<label for="">背景色</label>
+									<div class="colorpickerbox">
+										<colorpicker v-model="list.backgroundColor"></colorpicker>
+									</div>
+									<span class="pagebgbox" title="背景图建议尺寸 375*600 像素" @click="changeimg">
+										<img class="filebg" alt="" :src="list.backgroundimg" />
+									</span>
+									<div class="button" @click="changeimg">更换图片</div>
+									<div class="button" @click="deleteimg">删 除</div>
+									<div class="bt-updown">
+										<span>是否平铺</span>
+										<input type="checkbox" id="checkbox_c1" class="chk_3" checked v-model="list.backgroundRep" @click="bgrepeat"/>
+										<label for="checkbox_c1"></label>
+									</div>
+								</div>
+							</form>
+						</div>
+						<div class="nature" v-show="this.sIndex != -1? true:false">
+							<div v-if="comlist[sIndex]" v-show="itemlist.length < 2">
+								<set-videosrc :item="comlist[sIndex]" v-if="comlist[sIndex].widget.hasvideo"></set-videosrc>
+								<set-locname :item="comlist[sIndex]" v-if="comlist[sIndex].widget.locname"></set-locname>
+								<set-title :item="comlist[sIndex]" v-if="comlist[sIndex].widget.hastit"></set-title>
+								<set-form :item="comlist[sIndex]" v-if="comlist[sIndex].widget.form"></set-form>
+								<set-addform :item="comlist[sIndex]" v-if="comlist[sIndex].widget.addform"></set-addform>
+								<set-audiosrc :item="comlist[sIndex]" v-if="comlist[sIndex].widget.hasaudio"></set-audiosrc>
+								<set-audioauto :item="comlist[sIndex]" v-if="comlist[sIndex].widget.hasauto"></set-audioauto>
+		                        <set-btnstyle :item="comlist[sIndex]" v-if="comlist[sIndex].widget.btnstyle"></set-btnstyle>
+		                        <set-fontfamily :item="comlist[sIndex]" v-if="comlist[sIndex].widget.fontFamily"></set-fontfamily>
+		                        <set-fontsize :item="comlist[sIndex]" v-if="comlist[sIndex].widget.fontSize"></set-fontsize>
+		                        <set-fontline :item="comlist[sIndex]" v-if="comlist[sIndex].widget.fontLine"></set-fontline>
+		                        <set-colors :item="comlist[sIndex]" v-if="comlist[sIndex].widget.colors"></set-colors>
+		                        <set-bordercolors :item="comlist[sIndex]" v-if="comlist[sIndex].widget.bordercolors"></set-bordercolors>
+		                        <set-text :item="comlist[sIndex]" v-if="comlist[sIndex].widget.hasvalue"></set-text>
+		                        <set-fontstyle :item="comlist[sIndex]" v-if="comlist[sIndex].widget.fontStyle"></set-fontstyle>
+		                        <set-img :item="comlist[sIndex]" v-if="comlist[sIndex].widget.src"></set-img>
+		                        <set-size :item="comlist[sIndex]" v-if="comlist[sIndex].widget.hassize"></set-size>
+		                        <set-loc :item="comlist[sIndex]" v-if="comlist[sIndex].widget.hasloc"></set-loc>
+		                        <set-audiostyle :item="comlist[sIndex]" v-if="comlist[sIndex].widget.audiostyle"></set-audiostyle>
+		                        <set-indexs :item="comlist[sIndex]" v-if="comlist[sIndex].widget.index"></set-indexs>
+		                        <set-opacity :item="comlist[sIndex]" v-if="comlist[sIndex].widget.hasopacity" :min=0 :max=100></set-opacity>
+		                        <set-rotate :item="comlist[sIndex]" v-if="comlist[sIndex].widget.hasrotate" :min=0 :max=360></set-rotate>
+		                        <set-events :item="comlist[sIndex]" v-if="comlist[sIndex].widget.events"></set-events>
+		                        <set-line :item="comlist[sIndex]" v-if="comlist[sIndex].widget.lineStyle"></set-line>
+		                        <set-limit :item="comlist[sIndex]" v-if="comlist[sIndex].widget.limit"></set-limit>
+		                        <set-aline :item="comlist[sIndex]" v-if="comlist[sIndex].use"></set-aline>
+		                    </div>
+		                    <div v-if="itemlist.length >= 2">
+								<bt-batchline :item="itemlist"></bt-batchline>
+		                    </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="alert">
+		<div id="alertCtrlbox" v-if="comlist[sIndex]">
+			<set-imgroom :item="comlist[sIndex]" v-if="comlist[sIndex].widget.imgroom"></set-imgroom>
+			<set-audioroom :item="comlist[sIndex]" v-if="comlist[sIndex].widget.audioroom"></set-audioroom>
+		</div>
+		<div class="alertbox imgroom" v-if="imgroom" v-cloak>
+			<div class="alertdiv">
+				<div class="alertleft">
+					<ul>
+						<li class="active">我的图片</li>
+						<li>素材库</li>
+					</ul>
+				</div>
+				<div class="alertright">
+					<div class="alerttop">
+						<div class="chooseimgbtn">
+							<input type="file" @change="addimg" accept="image/gif,image/jpeg,image/x-png" />
+							<span>上传图片</span>
+						</div>
+						<div class="capacity">
+							<span>容量</span>
+							<div class="bar">
+								<div class="barmain">
+									<span>0.5M</span>/
+									<span>20M</span>
+								</div>
+								<div class="bartent" style="width:20%"></div>
+							</div>
+						</div>
+						<div class="close" @click="close">
+							<i class="iconfont icon-guanbi"></i>
+						</div>
+					</div>
+					<div class="alertdown img">
+						<ul>
+							<li class="addimg"><input type="file" @change="addimg" accept="image/gif,image/jpeg,image/x-png" /></li>
+							<li class="bg" v-for="(kovey,index) in imgbglist"><img :src="kovey.src" alt="" /><span @click="chooseimg">使用图片</span><i @click="delimg(index)" class="iconfont icon-guanbi"></i></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="alertbox iframebox" v-if="preview" v-cloak>
+			<div class="alertdiv">
+				<div class="alertiphone">
+					<div class="iphone">
+						<iframe src="" frameborder="0" width="375" height="600"></iframe>
+					</div>
+				</div>
+				<img src="" alt="" class="qrbox">
+				<i class="iconfont icon-guanbi iphone" @click="preview = !preview"></i>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+<script src="js/build.js"></script>
+<script src="js/colorpicker.js"></script>
+<script src="js/vuedraggable.min.js"></script>
+<script src="js/base.js"></script>
+<script src="js/op.js"></script>
+<script src="js/public.js"></script>
+<script src="js/comss.js"></script>
+<script src="js/batch.js"></script>
+<script src="js/main.js"></script>
+</html>

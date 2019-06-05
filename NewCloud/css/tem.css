@@ -1,0 +1,199 @@
+/*操作模块外框*/
+.fl-widget{pointer-events:auto;position:relative;/*width:100%;height:100%;top:0;left:0;bottom:0;right:0;*/z-index:2;/*transform:scale(0.95);-ms-transform:scale(0.95);-moz-transform:scale(0.95);-webkit-transform:scale(0.95);-o-transform:scale(0.95);*/}
+
+
+/*操作框*/
+.midopbox{width:auto;height:auto;padding:0px 5px 5px 5px;line-height:24px;font-size:12px;border:1px solid #8fa7e6;background-color:#6684d0;border-radius:3px;position:absolute;z-index: 99}
+.midopbox div.op{display: inline-block;zoom:1;vertical-align: middle;margin-top: 5px;}
+.midopbox div.op>i{width:16px;height:25px;line-height:24px;color:#b5c8f7;font-size:16px;display:inline-block;vertical-align:middle;margin-right:3px;}
+.midopbox select{height: 25px;display: inline-block;zoom:1;padding:2px;background-color: #7390d9;border:1px solid #5773bb;color: #b5c8f7;}
+.midopbox .ctrlbt{height: 25px;padding:2px;background-color: #7390d9;border:1px solid #5773bb;color: #b5c8f7;position: relative;}
+.midopbox .ctrlbt select{height: 20px;border:none;}
+.midopbox .ctrlbt button{padding: 1px 2px}
+.midopbox .ctrlbt i{font-size: 18px;color: #b5c8f7;}
+.midopbox .ctrlbt i:hover{color: #fff;}
+.midopbox .ctrlbt i.active{color: #fff;}
+
+.ctrllayer{display: inline-block;position: absolute;width: 90px;top: 24px;left: -1px;border:1px solid #5773bb;}
+.ctrllayer div{font-size: 14px;background-color: #7390d9;display:block;cursor: pointer}
+.ctrllayer div:hover{background-color: #6684d0;}
+
+.cfg_box{margin-bottom: 10px;}
+.form-widget-mask{width:60px;height:auto;padding:0px 4px 4px 4px;line-height:24px;font-size:12px;border:1px solid #8fa7e6;background-color:#6684d0;border-radius:3px;position:absolute;z-index: 99;}
+.form-widget-mask>div{height:25px;padding:2px;background-color:#7390d9;border:1px solid #5773bb;color:#b5c8f7;position:relative;display:inline-block;zoom:1;vertical-align:middle;margin-top:4px;}
+.form-widget-mask>div button{padding: 1px 2px}
+.form-widget-mask i{font-size:18px;color:#b5c8f7;}
+.widget-view{border:1px solid rgba(255,255,0,0);padding:5px;box-sizing:content-box;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;}
+.widget-select{width: auto;height: auto;border:1px solid #ccc;position: relative;}
+.widget-select .dragdot{position: absolute;width: 10px;height: 10px;border:1px solid #969696;background: #fff;}
+.widget-select .dot1{top: -5px;left: -5px;}
+.widget-select .dot2{top:-5px;left:50%;margin-left:-5px;}
+.widget-select .dot3{top: -5px;right: -5px;}
+.widget-select .dot4{top:50%;margin-top: -5px;right: -5px;}
+.widget-select .dot5{bottom: -5px;right: -5px;}
+.widget-select .dot6{bottom: -5px;left:50%;margin-left: -5px;}
+.widget-select .dot7{bottom: -5px;left: -5px;}
+.widget-select .dot8{top:50%;margin-top:-5px;left: -5px;}
+.widget-select.fui_text .dragdot{display: none;}
+.widget-select.fui_audio .dragdot{display: none;}
+.widget-select.fui_loc .dragdot{display: none;}
+.widget-select.fui_text .dragdot.dot2{display:block;}
+.widget-select.fui_text .dragdot.dot4{display:block;}
+.widget-select.fui_text .dragdot.dot6{display:block;}
+.widget-select.fui_text .dragdot.dot8{display:block;}
+.widget-select .form-widget-mask{display: block;}
+
+/*右侧设置区域*/
+.textvalue{width: 165px;height: 26px;line-height: 26px;border:1px solid #ccc;text-indent: 5px;}
+.formbox{}
+.zz{position: absolute;top: 0;left: 0;bottom: 0;right: 0;background: rgba(0,0,0,0.5);z-index: 9;}
+
+/*文本*/
+/*.textCtrl{width: 300px;}*/
+.test{width:100px;height:100px;margin:10px;border:1px solid #aaa;}
+.lr-tb{-webkit-writing-mode:horizontal-tb;writing-mode:lr-tb;writing-mode:horizontal-tb;}
+.tb-rl{-webkit-writing-mode:vertical-rl;writing-mode:tb-rl;writing-mode:vertical-rl;}
+.tb-lr{-webkit-writing-mode:vertical-lr;writing-mode:tb-rl;writing-mode:vertical-lr;}
+
+.expandingArea{position:relative;}
+.expandingArea div{display:block;margin:0;white-space:normal; word-break:break-all;outline: none}
+.textareas span{display: block;width: 100%;height: 100%;}
+.textinput{width: 100%;height: 100%;text-align: center;outline:none;background: none;border:none;}
+
+/*图片*/
+.filepgbox{width:186px;height:186px;line-height:186px;position:relative; display:inline-block; min-height:33px;overflow:hidden;vertical-align:middle;background:url('../images/filebg.jpg') center center no-repeat;cursor: pointer;}
+.imgchoose button{width: 85px;height: 32px;border:1px solid #a5a5a5;border-radius: 2px;margin:5px;font-size: 14px;color: #555555;background-color: #fff;}
+.ftname{width: 53px;height: 26px;line-height: 26px;float: left;}
+.ftcon{width: 160px;height: 26px;float: left;text-align: left}
+.ftcon .ftsel input{display: inline-block;width: 42px;height: 21px;line-height: 21px;}
+.imgsize{width: 100%;height: 26px;}
+.imgloc{width:100%;height: 26px;}
+
+/*按钮*/
+.btnbox{white-space:normal; word-break:break-all;}
+.btnbox .btn{text-align: center;outline: none;border:none;}
+.btnbox .btn.btn1{border-radius: 5px;}
+.btnbox .btn.btn2{border-radius: 1em;}
+.btnbox .btn.btn3{border-radius: 1em;-moz-box-shadow:0px 3px 0px #afc6e4; -webkit-box-shadow:0px 3px 0px #afc6e4; box-shadow:0px 3px 0px #afc6e4;}
+.btnbox .btn.btn4{border-radius: 50%;}
+.btnbox .btn.btn5{border-radius: 5px;}
+.btnbox .btn.btn6{border-radius: 50%;}
+
+/*视频*/
+.videobox .playbtn{width:100%;height:100%;position:absolute;top:0;left: 0;background:rgba(0,0,0,.3)}
+.videobox .playbtn i{font-size: 60px;display: block;position:absolute;top:50%;margin-top:-30px;left:50%;margin-left: -30px}
+
+/*锚点*/
+.locbox span{display: inline-block;}
+.locbox i{font-size: 24px;display: block;}
+
+/*预约预定*/
+.reservationsbox button{width: 95%;height: 60px;line-height: 60px;border-radius: 5px;margin-top:22px;white-space: nowrap;overflow: hidden;font-size: 28px;color: #fff;}
+.reservationsbox .kstextbox input,.kdbtextbox input{width: 95%;height: 42px;line-height: 42px;border-radius: 5px;margin:5px;background: none;outline: none;border:1px solid #ccc;text-indent: 10px;font-size: 16px;}
+.reservationsbox textarea{width: 93%;line-height: 42px;border-radius: 5px;margin:5px;background: none;outline: none;border:1px solid #ccc;text-indent: 10px;font-size: 16px;}
+
+/*预约预定属性设置*/
+.stextbox{}
+.boxmain{position: relative;width: 88%;margin:0 auto;margin-bottom: 3px;}
+.boxmain span{display: inline-block;padding:0 5px;height: 25px;line-height: 25px;background: #cccccc;color:#676767;cursor: pointer;}
+.boxmain input{display: inline-block;width: 128px;height: 25px;line-height: 25px;border:1px solid #ccc;text-indent: 5px}
+.boxmain i{display: inline-block;width: 25px;height: 25px;line-height: 25px;position: absolute;right: 5px;color: #f00;}
+.boxmain i.guanbi{display:none;width: 25px;height: 25px;line-height: 28px;position: absolute;right: 5px;cursor: pointer}
+.boxmain:hover i{display:none;}
+.boxmain:hover i.guanbi{display:inline-block;}
+
+.databox{width:85%;position:absolute;top:150px;left:16px;background:#f2f2f2;border:1px solid #ccc;z-index:2;padding-bottom: 5px;}
+.databox .title{width:100%;height:36px;line-height: 36px;background: #e6e7e8;}
+.databox .title span{display: inline-block;font-size:15px;color: #464646}
+.databox .title span.ttext{float: left;padding-left:10px;}
+.databox .title span.closebtn{float: right;padding-right:10px;}
+
+.databox .input{margin-top:3px;}
+.databox .input>input{width:170px;height: 28px;line-height: 28px;text-indent: 5px;}
+.databox .input .tit{width: 100%;height: 30px;line-height: 30px;color:#464646;}
+.databox .input .tit span{font-size: 14px;}
+.databox .input .tit span.ltext{float: left;padding-left:10px;}
+.databox .input .tit span.rtext{float: right;padding-right:10px;}
+.databox .input .tit span.rtext input{display: inline-block;vertical-align: middle;}
+.databox .input .tit span.rtext span{display: inline-block;vertical-align: middle;}
+
+.validate{margin-top: 3px;overflow: hidden;}
+.validate span{display:inline-block;padding:0 5px;width:50px;height:27px;line-height:27px;}
+.validate span.lvali{float: left;padding-left: 10px;}
+.validate span.rvali{float: right;}
+
+.datetype{padding:5px;}
+.datetype div{width: 80px;height: 28px;line-height: 26px;display: inline-block;vertical-align: middle;background-color: #fff;border:1px solid #e0e0e0;margin:2px;cursor: pointer;position: relative;}
+.datetype div.on{border:1px solid #5f5f5f;}
+.datetype div.on:after{content:'';width:0;height:0;border-width:10px 0 0 10px;border-style:solid;border-color:#5f5f5f transparent transparent transparent;position: absolute;top: 0;right: 0;}
+.datetype div .input-radio{display:inline-block;position:absolute;opacity:0;width:80px;height:28px;cursor:pointer;left:0px;outline:none;-webkit-appearance:none;}
+
+.dbtextbox{}
+.linenum{width:100%;height:30px;line-height:30px;padding:0 8px;}
+.linenum span{padding:0 5px;}
+.linenum input{text-indent: 5px}
+
+.radiobox{}
+.optionbox input{width:170px;height:28px;line-height:28px;text-indent:5px;margin-bottom:5px;}
+.optionbox .tit span{display:inline-block;width:50px;height:27px;line-height:27px;float: left}
+.optionbox button{width:170px;height:27px;line-height:27px;background:url(/images/tool/images/addbtn.png);background-size:100% 100%;}
+
+.checkboxbox{}
+
+.addform{position: relative;}
+.optbox i.guanbi{display:none;width: 28px;height: 28px;line-height: 31px;position: absolute;right: 5px;cursor: pointer}
+.optbox:hover i.guanbi{display:inline-block;}
+
+.radiobox .boxmain input{display: inline-block;width: 152px;height: 25px;line-height: 25px;border:1px solid #ccc;text-indent: 5px}
+.checkboxbox .boxmain input{display: inline-block;width: 152px;height: 25px;line-height: 25px;border:1px solid #ccc;text-indent: 5px}
+
+/*操作区多选按钮盒子*/
+.kradiobox{}
+.kradiobox p{width:95%;line-height: 22px;font-size:16px;display: inline-block;vertical-align:middle;text-align: left;text-indent: 16px;margin-bottom: 5px;}
+.kradiobox select{width: 95%;height: 42px;line-height: 42px;font-size: 16px;text-indent: 10px;display: inline-block;vertical-align:middle;border-radius: 5px;}
+
+/*多选*/
+.kcheckboxbox{}
+.kcheckboxbox p{width:95%;line-height: 22px;font-size:16px;display: inline-block;vertical-align:middle;text-align: left;text-indent: 16px;margin-bottom: 5px;}
+.kcheckboxbox .kcheck{margin-top: 5px;position: relative;}
+.kcheckboxbox .kcheck>span{width:95%;height:42px;line-height:42px;display:inline-block;text-align:left;text-indent:10px;border:1px solid #ccc;}
+.kcheckboxbox .kcheck ul{width:95%;margin:0 auto;border:1px solid #ccc;border-radius: 5px;}
+.kcheckboxbox .kcheck ul li{width:100%;line-height:42px;text-align:left;text-indent:10px;background: #fff;font-size: 16px;}
+.kcheckboxbox .kcheck ul li span{width:90%;display: inline-block;text-indent: 5px;}
+.kcheckboxbox .kcheck ul li input{display:inline-block;vertical-align:top;height:42px;}
+
+/*调色板 colorPicker*/
+.opbox .m-colorPicker{width:24px;height:24px;padding:2px;text-align:left;font-size:14px;border-radius:3px;display:inline-block;vertical-align:middle;background-color:#7390d9;border:1px solid #5773bb;}
+.opbox .m-colorPicker .colorBtn{width:18px;height:18px;border-radius:50%;}
+.m-colorPicker{width:55px;height:21px;text-align:left;font-size:14px;display:inline-block;vertical-align:middle;border:1px solid #ccc;}
+.m-colorPicker ul,.m-colorPicker li,.m-colorPicker ol{list-style:none;margin:0;padding:0;}
+.m-colorPicker input{display:none;}
+.m-colorPicker .colorBtn{width:53px;height:19px;}
+.m-colorPicker .colorBtn.disabled{cursor:no-drop;}
+.m-colorPicker .box{position:absolute;left: 10px;width:195px;background:#fff;border:1px solid #ddd;visibility:hidden;border-radius:2px;margin-top:2px;padding:10px;padding-bottom:5px;box-shadow:0 0 5px rgba(0,0,0,0.15);opacity:0;transition:all 0.3s ease;z-index:2;}
+.m-colorPicker .box h3{margin:0;font-size:14px;font-weight:normal;margin-bottom:5px;line-height:1;}
+.m-colorPicker .box.open{visibility:visible;opacity:1;}
+.m-colorPicker .hd{overflow:hidden;line-height:29px;}
+.m-colorPicker .hd .colorView{width:100px;height:30px;float:left;transition:background-color 0.3s ease;}
+.m-colorPicker .hd .defaultColor{width:80px;float:right;text-align:center;border:1px solid #ddd;cursor:pointer;}
+.m-colorPicker .tColor li{width:15px;height:15px;display:inline-block;margin:0 2px;transition:all 0.3s ease;position: relative}
+.m-colorPicker .tColor li:first-child{border: 1px solid #ccc;background:linear-gradient(45deg, transparent 49.5%, deeppink 49.5%, deeppink 50.5%, transparent 50.5%);}
+.m-colorPicker .tColor li:hover{box-shadow:0 0 5px rgba(0,0,0,0.4);transform:scale(1.3);}
+.m-colorPicker .bColor li{width:15px;display:inline-block;margin:0 2px;}
+.m-colorPicker .bColor li li{display:block;width:15px;height:15px;transition:all 0.3s ease;margin:0;}
+.m-colorPicker .bColor li li:hover{box-shadow:0 0 5px rgba(0,0,0,0.4);transform:scale(1.3);}
+
+/*进度条滑动组件*/
+.slider{position:relative;width:100px;height:10px;border-radius:5px;cursor:pointer;background: #ccc;}
+.slider .process{position:absolute;left:0;top:0;width:100px;height:10px;border-radius:5px;background:#409eff}
+.slider .thunk{position:absolute;left:100px;top:-5px;width:20px;height:20px}
+.slider .block{width:20px;height:20px;border-radius:50%;border:2px solid #409eff;background:rgba(255,255,255,1);transition:.2s all}
+.slider .tips{position:absolute;left:-7px;bottom:30px;min-width:15px;text-align:center;padding:4px 8px;background:#000;border-radius:5px;height:24px;color:#fff}
+.slider .tips i{position:absolute;margin-left:-5px;left:50%;bottom:-9px;font-size:16px;color:#000}
+.slider .block:hover{transform:scale(1.1)}
+
+/*点击事件*/
+.chooseevent{width:205px;height: 50px;position: absolute;top: 30px;left: 8px;background-color:#bababa;border-radius: 2px;padding: 12px;}
+.chooseevent input{width:175px;height: 20px;outline: none;border:none;background-color:#fff;text-indent: 5px;}
+.chooseevent:before{content:'';width:0;height:0;overflow:hidden;font-size:0;line-height:0;border-width:10px;border-style:solid dashed dashed dashed;border-color:transparent transparent #bababa transparent;position:absolute;top:-15px;left:110px;}
+.chooseevent select{width:175px;}

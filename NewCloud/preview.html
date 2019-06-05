@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="keywords" content="">
+	<title>编辑页</title>
+    <link rel="stylesheet" type="text/css" href="css/base.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="css/spectrum.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="css/index.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="css/tem.css" media="screen" />
+    <script type="text/javascript" src="js/jquery-1.9.0.min.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript" src="js/spectrum.js"></script>
+</head>
+<body>
+<div id="body" onselectstart="return false;">
+	<div class="main">
+		<div class="mid">
+			<div class="ele" :style="[{height:list.pageheight}]">
+				<div class="elebox" :style="[{backgroundSize:list.backgroundSize},{backgroundColor:list.backgroundColor},{backgroundImage:list.backgroundImage},{backgroundRepeat:list.backgroundRepeat}]">
+					<div id="form-widget-list">
+	                    <div class="dragbox" id="draggable">
+	                        <component :is="'tab-'+item.widget.type" v-for="(item,index) in comlist" :key="index" :sbool="sIndex==index" :item="item" @getcx="selector" @getfocus="focus()" @delcx="deleteCom" @keydelcx="deleteCom" :cindex="index" :widname.sync="item.widget.widgetName" @addcx="addItem"></component>
+	                    </div>
+		            </div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+<script src="js/build.js"></script>
+<script src="js/vue-2.4.0.js"></script>
+<script src="js/public.js"></script>
+<script src="js/base.js"></script>
+<script src="js/comss.js"></script>
+<script src="js/op.js"></script>
+<script src="js/colorpicker.js"></script>
+<script src="js/main.js"></script>
+</html>
